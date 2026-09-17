@@ -28,25 +28,25 @@ YOLO 객체 인식, OAK-D RGB-D 거리 추정, TF2 좌표 변환, Nav2 장애물
 
 ```mermaid
 flowchart LR
-    Webcam[External Webcam<br/>device index 2] --> TriggerYOLO[YOLO trigger detection]
-    TriggerYOLO --> Start[/robot1/start_mission<br/>Bool, transient local]
-    Start --> Mission[mission_controller]
+    Webcam["External Webcam<br/>device index 2"] --> TriggerYOLO["YOLO trigger detection"]
+    TriggerYOLO --> Start["/robot1/start_mission<br/>Bool, transient local"]
+    Start --> Mission["mission_controller"]
 
-    OAKRGB[OAK-D RGB compressed] --> Sync[Approximate RGB/Depth sync]
-    OAKDepth[OAK-D compressedDepth] --> Sync
-    CameraInfo[OAK-D CameraInfo] --> Projection[Pixel + Depth<br/>camera 3D]
-    Sync --> RobotYOLO[YOLO target detection]
+    OAKRGB["OAK-D RGB compressed"] --> Sync["Approximate RGB/Depth sync"]
+    OAKDepth["OAK-D compressedDepth"] --> Sync
+    CameraInfo["OAK-D CameraInfo"] --> Projection["Pixel + Depth<br/>camera 3D"]
+    Sync --> RobotYOLO["YOLO target detection"]
     RobotYOLO --> Projection
-    Projection --> TF2[TF2 camera frame → map]
-    TF2 --> Goal[Object-aware approach goal]
-    Goal --> Nav2[Nav2 / TurtleBot4Navigator]
-    Nav2 --> Base[TurtleBot 4]
+    Projection --> TF2["TF2 camera frame to map"]
+    TF2 --> Goal["Object-aware approach goal"]
+    Goal --> Nav2["Nav2 / TurtleBot4Navigator"]
+    Nav2 --> Base["TurtleBot 4"]
 
-    RobotYOLO --> Offset[Horizontal image offset]
-    OAKDepth --> Error[Depth distance error]
-    Offset --> PControl[Near-field P-control]
-    Error --> PControl
-    PControl --> CmdVel[/robot1/cmd_vel]
+    RobotYOLO --> Offset["Horizontal image offset"]
+    OAKDepth --> DepthError["Depth distance error"]
+    Offset --> PControl["Near-field P-control"]
+    DepthError --> PControl
+    PControl --> CmdVel["/robot1/cmd_vel"]
     CmdVel --> Base
 ```
 
