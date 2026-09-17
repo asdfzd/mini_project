@@ -1,0 +1,27 @@
+# ROS 2 / colcon
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local environments and captures
+.venv/
+venv/
+*.bag
+*.db3
+
+# Archive artifacts are not source code
+*.zip

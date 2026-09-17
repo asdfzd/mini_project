@@ -1,0 +1,2 @@
+# Non-ROS dependency. Install ROS dependencies with rosdep first.
+ultralytics
